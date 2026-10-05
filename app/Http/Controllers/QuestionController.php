@@ -27,7 +27,13 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // Ambil data dari form input
+        $nama = $request->input('nama');
+        $email = $request->input('email');
+        $pertanyaan = $request->input('pertanyaan');
+
+        // Return view dengan membawa data (Passing Data)
+        return view('home-question-respon', compact('nama', 'email', 'pertanyaan'));
     }
 
     /**
