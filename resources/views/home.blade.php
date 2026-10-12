@@ -1,54 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Laravel App</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-        }
-
-        .navbar {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-section {
-            background-color: #3187e9;
-            color: white;
-            padding: 50px 0;
-            text-align: center;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-        }
-
-        .card {
-            margin-top: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-
-        .footer p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
+        body { font-family: 'Arial', sans-serif; }
+        .navbar-brand { font-weight: bold; }
+        .navbar { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        .hero-section { background-color: #3187e9; color: white; padding: 50px 0; text-align: center; }
+        .hero-section h1 { font-size: 3rem; }
+        .card { margin-top: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .footer { margin-top: 50px; padding: 20px 0; background-color: #f8f9fa; text-align: center; }
+        .footer p { margin: 0; font-size: 0.9rem; color: #6c757d; }
     </style>
 </head>
 
@@ -56,38 +22,31 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">My Laravel App</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="{{ url('/') }}">My Laravel App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section (Diberi nilai default '??' agar tidak error) -->
+    <!-- Hero -->
     <section class="hero-section">
         <div class="container">
-           <h1> {{ $username ?? 'Selamat Datang' }} </h1>
-            <p> {{ $last_login ?? 'Silahkan isi form di bawah' }} </p>
+            <h1>{{ $username ?? 'Selamat Datang' }}</h1>
+            <p>{{ $last_login ?? 'Silakan isi form di bawah' }}</p>
         </div>
     </section>
 
-    <!-- Content Section -->
+    <!-- Konten -->
     <section id="content" class="container">
         <div class="row">
             <div class="col-md-6">
@@ -100,7 +59,7 @@
                     </div>
                 </div>
 
-                <!-- Accordion -->
+                {{-- Accordion --}}
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
@@ -109,9 +68,7 @@
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                We are a tech company that specializes in web development solutions.
-                            </div>
+                            <div class="accordion-body">We are a tech company that specializes in web development solutions.</div>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -121,30 +78,45 @@
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                We offer web development, SEO optimization, and digital marketing services.
-                            </div>
+                            <div class="accordion-body">We offer web development, SEO optimization, and digital marketing services.</div>
                         </div>
                     </div>
                 </div>
 
-                {{-- Form Pertanyaan (Sudah Diperbaiki) --}}
+                {{-- Form Pertanyaan --}}
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Form Pertanyaan</h5>
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        @if (session('info'))
+                            <div class="alert alert-info">
+                                {!! session('info') !!}
+                            </div>
+                        @endif
+
                         <form action="{{ route('question.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" name="nama" value="{{ old('nama') }}">
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" value="{{ old('email') }}">
+                                <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="pertanyaan" class="form-label">Pertanyaan</label>
-                                <textarea name="pertanyaan">{{ old('pertanyaan') }}</textarea>
+                                <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="4">{{ old('pertanyaan') }}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
                         </form>
@@ -171,24 +143,15 @@
                         <div class="table-responsive">
                             <table class="table align-middle">
                                 <thead class="table-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                    </tr>
+                                    <tr><th>#</th><th>Name</th><th>Role</th><th>Status</th></tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Ani</td>
-                                        <td>Admin</td>
+                                        <td>1</td><td>Ani</td><td>Admin</td>
                                         <td><span class="badge text-bg-success">Active</span></td>
                                     </tr>
                                     <tr>
-                                        <td>2</td>
-                                        <td>Budi</td>
-                                        <td>User</td>
+                                        <td>2</td><td>Budi</td><td>User</td>
                                         <td><span class="badge text-bg-secondary">Inactive</span></td>
                                     </tr>
                                 </tbody>
@@ -207,8 +170,7 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
