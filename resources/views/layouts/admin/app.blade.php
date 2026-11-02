@@ -46,30 +46,28 @@
 
     <!-- Volt CSS -->
      <!-- start css -->
-    @include('layouts.admin.css');
+    @include('layouts.admin.css')
 
 
 </head>
 
 
 <body>
-    @include('layouts.admin.sidebar');
+    @include('layouts.admin.sidebar')
 
     <main class="content">
 
 
-        @include('layouts.admin.header');
-
-
+        @include('layouts.admin.header')
 
 
         @yield('content')
 
 
-       @include('layouts.admin.footer');
+       @include('layouts.admin.footer')
     </main>
 
-    @include('layouts.admin.js');
+    @include('layouts.admin.js')
 
 </body>
 
