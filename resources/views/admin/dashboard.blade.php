@@ -125,6 +125,26 @@
 		    </a>
 		</li>
 
+
+                <li class="nav-item">
+                    <a href="{{ route('user.index') }}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2"
+                                fill="none"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72M6 18.72a9.094 9.094 0 0 1-3.741-.479 3 3 0 0 1 4.682-2.72M12 12.75a5.995 5.995 0 0 0-5.058 2.772"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">User</span>
+                    </a>
+                </li>
+
+
                 <li class="nav-item">
                     <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-app">
                         <span>
