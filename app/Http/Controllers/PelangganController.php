@@ -19,10 +19,19 @@ class PelangganController extends Controller
         // Daftar kolom yang bisa difilter sesuai name pada form
         $filterableColumns = ['gender'];
 
-        // Gunakan scope filter untuk memproses query
-        $pagedata['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)->paginate(10);
+        $searchableColumns = [
+            'first_name',
+            'last_name',
+            'email'
+        ];
 
-        return view('admin.pelanggan.index', $pagedata);
+        // Gunakan scope filter untuk memproses query
+        $data['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)
+                                    ->search($request, $searchableColumns)
+                                    ->paginate(10)
+                                    ->withQueryString();
+
+        return view('admin.pelanggan.index', $data);
 }
 
 
