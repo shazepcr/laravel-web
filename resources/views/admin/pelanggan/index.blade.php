@@ -46,6 +46,20 @@
     </div>
 </div>
 
+<!-- Buat form filter dengan select untuk gender -->
+<div class="table-responsive">
+      <form method="GET" action="{{ route('pelanggan.index') }}" onchange="this.form.submit()" class="mb-3">
+          <div class="row">
+              <div class="col-md-2">
+                  <select name="gender" class="form-select">
+                      <option value="">All Genders</option>
+                      <option value="Male" {{ request('gender')=='Male' ? 'selected' : '' }}>Male</option>
+                      <option value="Female" {{ request('gender')=='Female' ? 'selected' : '' }}>Female</option>
+                  </select>
+              </div>
+          </div>
+      </form>
+
 {{-- Tabel pelanggan --}}
 <div class="row">
     <div class="col-12 mb-4">
@@ -104,8 +118,11 @@
                                 </tr>
                             @endforelse
                         </tbody>
-
                     </table>
+
+                    <!-- menampilkan list tombol  -->
+                    <div class="mt-3">
+                        {{ $dataPelanggan->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>
